@@ -1,49 +1,66 @@
-<?php
-/**
- * @package    Joomla.Site
- *
- * @copyright  Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- */
-
-/**
- * Define the application's minimum supported PHP version as a constant so it can be referenced within the application.
- */
-define('JOOMLA_MINIMUM_PHP', '5.3.10');
-
-if (version_compare(PHP_VERSION, JOOMLA_MINIMUM_PHP, '<'))
-{
-	die('Your host needs to use PHP ' . JOOMLA_MINIMUM_PHP . ' or higher to run this version of Joomla!');
+<html>
+<head>
+<title>First steps of symlinked Joomla installation</title>
+<style>
+table, tr, td {
+	border: solid 1px;
 }
+</style>
+</head>
+<body>
 
-// Saves the start time and memory usage.
-$startTime = microtime(1);
-$startMem  = memory_get_usage();
-
-/**
- * Constant that is checked in included files to prevent direct access.
- * define() is used in the installation folder rather than "const" to not error for PHP 5.2 and lower
- */
-define('_JEXEC', 1);
-
-if (file_exists(__DIR__ . '/defines.php'))
-{
-	include_once __DIR__ . '/defines.php';
-}
-
-if (!defined('_JDEFINES'))
-{
-	define('JPATH_BASE', __DIR__);
-	require_once JPATH_BASE . '/includes/defines.php';
-}
-
-require_once JPATH_BASE . '/includes/framework.php';
-
-// Set profiler start time and memory usage and mark afterLoad in the profiler.
-JDEBUG ? JProfiler::getInstance('Application')->setStart($startTime, $startMem)->mark('afterLoad') : null;
-
-// Instantiate the application.
-$app = JFactory::getApplication('site');
-
-// Execute the application.
-$app->execute();
+<form method="POST" action="remotes.php">
+<table style="width:576px;">
+<caption>
+<h2>Symlinked Joomla site - preparing for installation</h2>
+<h3>Before you start installing new site you should prepare your environment creating access to the main Joomla source files. Be aware that your server supports symlinks!</h3>
+</caption>
+<tr><td colspan="2">
+Submit full path to the target directory where your main Joomla site is installed.<br /> 
+<strong>Don't forget to add / at the end!</strong><br />
+If you are in a subdomain then your document root (that should be a default value in textbox) may contain also your subdomain's main folder after public_html (or whatever else). You may have to replace it with right folder path.</td></tr>
+<tr><td colspan="2">
+<input type="text" name="target" id="target" style="width:100%" value="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/" /></td>
+</tr>
+<tr>
+<td colspan="2">
+Now decide what do you want to do with image folder - to have just a symlink, only own folder or both.
+</td>
+</tr>
+<tr>
+<td>
+I don't need own image folder, let's create just a symlink to the source 
+</td>
+<td>
+<input type="radio" name="images" id="images" value="0" checked>
+</td>
+</tr>
+<tr>
+<td>
+I need an own image folder, no symlink 
+</td>
+<td>
+<input type="radio" name="images" id="images" value="1">
+</td>
+</tr>
+<tr>
+<td>
+I need an image folder and a symlink inside it 
+</td>
+<td>
+<input type="radio" name="images" id="images" value="2">
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" value="Submit"></a>
+</td>
+</tr>
+</table>
+<p>Symlinked Joomla installation can heavily save space in your file storage and prevent increasing your inode number which is very important i.e. when your payments for shared web hosting are depending on how much inodes you have in your account.</p>
+Regards,<br />
+Jaanus Nurmoja<br />
+Rakvere, Estonia<br />
+jaanus.nurmoja@gmail.com<br /><br />
+</body>
+</html>
