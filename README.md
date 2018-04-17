@@ -13,7 +13,7 @@ With this code you can
 
 HOW?
 * clone the code to your computer and upload it to server
-* if you are not sure whether your server supports symlinks, rename the htaccess.txt to .htaccess (or create new on just with Options +FollowSymLinks)
+* if you are not sure whether your server supports symlinks, rename the htaccess.txt to .htaccess (or create new one just with Options +FollowSymLinks)
 * if you want to use existing db tables (i.e to "convert" an old site or create an alterate access point) then you have to upload configuration.php first. It MUST BE filled with needed credentials before you continue. 
 * open the new site url, follow the instructions and submit the form with needed data
 * new page with results and further instructions opens
