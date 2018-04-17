@@ -17,7 +17,7 @@ HOW?
 * if you want to use existing db tables (i.e to "convert" an old site or create an alterate access point) then you have to upload configuration.php first. It MUST BE filled with needed credentials before you continue. 
 * open the new site url, follow the instructions and submit the form with needed data
 * new page with results and further instructions opens
-* at the same time the initial index.php should be renamed to something else, as well as index.php-dist renamed to index.php
+* at the same time the initial index.php should be autmatically renamed to index.php-old while index.php-dist should be renamed to index.php (and that's the J! original file).
 * click on your site url - it opens now the installer. With prefilled configuration.php it says that your site is installed, so delete the installation directory. If you are installing a new site you just pass a standard installation process from very beginning.
 
 Go ahead!
