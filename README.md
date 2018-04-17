@@ -1,3 +1,31 @@
+Less space, less inodes. EXPERIMENT with Joomla!
+------------------------------------------------
+As mentioned above, this is a space saving version of Joomla! CMS™ (based on 3.8.6). That means - if you have multiple Joomla sites then only one of them is a "full" Joomla. Others are reading most of the code (extensions, libraries, media) from this "main" site via symlinks. FOR TESTING PURPOSES ONLY. PRs are very welcome. 
+
+Normally if your multiple sites are using (mainly) similar extensions you have to install them for each site separately. That means also files in filesystem. But some extensions (like [Fabrik](https://github.com/Fabrik/fabrik)) could have enormously code files, even more than Joomla itself with core extensions. And now let's imagine that every J! site in your server need this extension. 
+
+Some shared host providers are counting also inodes (number of files and folders) and set different inode limits for different hosting plans. So even if you have enough free space you still can exceeded inode limit and you have to choose more expensive plan. This little experiment is aimed to find a good way to avoid such situations.
+
+With this code you can 
+* replace your existing Joomla installations - then you most probably continue using an existing database
+* install completely new Joomla site - then you can choose whether you want to share the database with an existing site or use a separate one
+* create access to an existing Joomla site from an alternate URL - then you will not create any new database.  
+
+HOW?
+* clone the code to your computer and upload it to server
+* if you are not sure whether your server supports symlinks, rename the htaccess.txt to .htaccess (or create new on just with Options +FollowSymLinks)
+* if you want to use existing db tables (i.e to "convert" an old site or create an alterate access point) then you have to upload configuration.php first. It MUST BE filled with needed credentials before you continue. 
+* open the new site url, follow the instructions and submit the form with needed data
+* new page with results and further instructions opens
+* at the same time the initial index.php should be renamed to something else, as well as index.php-dist renamed to index.php
+* click on your site url - it opens now the installer. With prefilled configuration.php it says that your site is installed, so delete the installation directory. If you are installing a new site you just pass a standard installation process from very beginning.
+
+Go ahead!
+
+Regards
+
+Jaanus Nurmoja
+
 Joomla! CMS™ [![Analytics](https://ga-beacon.appspot.com/UA-544070-3/joomla-cms/readme)](https://github.com/igrigorik/ga-beacon)
 ====================
 
